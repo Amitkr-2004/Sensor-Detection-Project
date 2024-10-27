@@ -1,4 +1,5 @@
 pandas
 numpy
+pymongo
 
 -e. #by writing this we can directly install all requirements by using python install -r requirements.txt
