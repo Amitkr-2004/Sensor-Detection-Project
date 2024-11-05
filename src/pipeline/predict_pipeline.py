@@ -80,5 +80,7 @@ class PredictPipeline:
 
             self.get_predicted_output(input_dataFrame_path=input_file_path)
 
+            return self.predict_pipeline_config
+
         except Exception as e:
             raise CustomException(e,sys) from e
