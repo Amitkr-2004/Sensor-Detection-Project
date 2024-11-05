@@ -1,8 +1,9 @@
 import logging
 import os
 from datetime import datetime
+import time
 
-LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%s')}.log"  #format of the file that will be stored in the log file
+LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M')}_{int(time.time())}.log"#format of the file that will be stored in the log file
 
 logs_path=os.path.join(os.getcwd(),"logs",LOG_FILE)     #current Directory/logs/LOG_FILE format
 

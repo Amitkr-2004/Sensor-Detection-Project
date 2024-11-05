@@ -49,7 +49,7 @@ class PredictPipeline:
         except Exception as e:
             raise CustomException(e,sys) from e
     
-    def get_predicted_output(self,input_dataFrame_path: pd.dataFrame):
+    def get_predicted_output(self,input_dataFrame_path: pd.DataFrame):
         try:
             prediction_column_name:str = TARGET_COLUMN
 

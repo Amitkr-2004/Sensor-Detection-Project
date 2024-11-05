@@ -10,7 +10,7 @@ app=Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Welcome to my detection"
+    return "Welcome to my Website"
 
 @app.route("/train")
 def train_route():
@@ -28,9 +28,9 @@ def upload():
     try:
 
         if(request.method=='POST'):
-            prediction_pipeline = PredictPipeline()
+            prediction_pipeline = PredictPipeline(request)
             
-            prediction_pipeline_detail = prediction_pipeline.run_pipeline(request)  #through request whole file is sent
+            prediction_pipeline_detail = prediction_pipeline.run_pipeline()  #through request whole file is sent
 
             logging.info("prediction completed. Downloading prediction file.")
 

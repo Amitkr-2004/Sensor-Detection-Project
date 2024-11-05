@@ -43,13 +43,10 @@ class DataTransformation:
         
     def get_data_transformer_object(self):
         try:
-            imputer_step = ('imputer',SimpleImputer(strategy='const',fill_value=0))     #it will be used in replacing the null value with 0
+            imputer_step = ('imputer',SimpleImputer(strategy='constant',fill_value=0))     #it will be used in replacing the null value with 0
             scaler_step = ('scaler',RobustScaler())
 
-            preprocessor=Pipeline(
-                imputer_step,
-                scaler_step
-            )
+            preprocessor = Pipeline(steps=[imputer_step, scaler_step])
 
             return preprocessor
         
@@ -63,7 +60,7 @@ class DataTransformation:
         try:
             dataframe=self.get_data(feature_store_file_path=self.feature_store_file_path)   #consists the data
 
-            X=dataframe.drop(TARGET_COLUMN,axis=1)
+            X=dataframe.drop(columns=TARGET_COLUMN)
             y=np.where(dataframe[TARGET_COLUMN]==-1,0,1)    #if value is -1 then replace it with 0 else 1 as negative values are bit difficult to compute by machine
 
             X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2)
@@ -81,7 +78,7 @@ class DataTransformation:
             train_arr = np.c_[X_train_scaled,np.array(y_train)]
             test_arr = np.c_[X_test_scaled,np.array(y_test)]
 
-            return train_arr,test_arr,preprocessor_path
+            return (train_arr,test_arr,preprocessor_path)
         
         except Exception as e:
             raise CustomException(e,sys) from e
